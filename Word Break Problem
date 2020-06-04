@@ -1,0 +1,22 @@
+class Solution {
+
+    public boolean wordBreak(String s, List<String> ws) {
+         HashSet<String> hset = new HashSet<String>(ws);
+         
+         boolean dp[] = new boolean[s.length()+1];
+         dp[0] = true;
+        
+        for(int i=0;i<s.length();i++){
+            for(int j=0;j<=i;j++){
+                //0,j and j to i
+                if(dp[j] && hset.contains(s.substring(j,i+1))){
+                    dp[i+1] = true;
+                    break;
+                }
+            }
+        }
+        return dp[s.length()];
+        }
+}
+[Explaination] :- in this problem we are going to have dp array which is going to store the trueness from 0 to i 
+means the string from 0 to i is present in the target
